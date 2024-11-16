@@ -22,7 +22,7 @@ const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <div className="text-2xl font-bold text-primary">TechSolutions</div>
+            <Link to="/" className="text-2xl font-bold text-primary">TechSolutions</Link>
             
             <NavigationMenu>
               <NavigationMenuList>
@@ -55,22 +55,28 @@ const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2">
                       <li>
                         <NavigationMenuLink asChild>
-                          <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <Link 
+                            to="/industrial-solutions"
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
                             <div className="text-sm font-medium leading-none">Siemens PLC</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                               Industrial automation solutions with Siemens PLCs
                             </p>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                       </li>
                       <li>
                         <NavigationMenuLink asChild>
-                          <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <Link 
+                            to="/industrial-solutions"
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
                             <div className="text-sm font-medium leading-none">IIoT Projects</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                               Industrial Internet of Things solutions
                             </p>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                       </li>
                     </ul>
@@ -83,12 +89,15 @@ const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
                     <ul className="grid w-[400px] gap-3 p-4">
                       <li>
                         <NavigationMenuLink asChild>
-                          <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <Link 
+                            to="/company-profile"
+                            className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+                          >
                             <div className="text-sm font-medium leading-none">Company Profile</div>
                             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                               Learn about our history and expertise
                             </p>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                       </li>
                     </ul>
