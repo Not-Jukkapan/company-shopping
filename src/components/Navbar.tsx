@@ -8,8 +8,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Link } from '@tanstack/react-router';
 
 interface NavbarProps {
   onCartClick: () => void;
