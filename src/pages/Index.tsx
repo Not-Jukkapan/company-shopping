@@ -60,7 +60,10 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar onCartClick={() => setIsCartOpen(true)} />
+      <Navbar 
+        onCartClick={() => setIsCartOpen(true)} 
+        cartItemCount={cartItems.length}
+      />
       
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8 text-center">Featured Products</h1>

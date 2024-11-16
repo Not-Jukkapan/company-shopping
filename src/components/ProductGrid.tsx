@@ -14,6 +14,7 @@ const ProductGrid = ({ products, onAddToCart }: ProductGridProps) => {
           key={product.id}
           product={product}
           onAddToCart={onAddToCart}
+          totalProducts={10} // You can replace this with actual stock count from your product data
         />
       ))}
     </div>
