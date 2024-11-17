@@ -42,6 +42,7 @@ const productDetailRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/product/$id',
   component: ProductDetail,
+  validateSearch: (search: Record<string, unknown>) => ({ id: String(search.id) }),
 });
 
 const companyProfileRoute = new Route({

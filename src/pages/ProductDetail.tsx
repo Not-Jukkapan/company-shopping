@@ -1,4 +1,4 @@
-import { useParams } from "@tanstack/react-router";
+import { useSearch } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
 import { toast } from "sonner";
@@ -20,12 +20,12 @@ const fetchProductDetails = async (id: string): Promise<Product> => {
 };
 
 const ProductDetail = () => {
-  const { id } = useParams();
+  const search = useSearch({ from: '/product/$id' });
   const [quantity, setQuantity] = useState(1);
 
   const { data: product, isLoading } = useQuery({
-    queryKey: ['product', id],
-    queryFn: () => fetchProductDetails(id),
+    queryKey: ['product', search.id],
+    queryFn: () => fetchProductDetails(search.id),
   });
 
   const handleAddToCart = () => {
