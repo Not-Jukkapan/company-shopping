@@ -1,9 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Product } from "@/types/product";
-import { Link, useNavigate } from "@tanstack/react-router";
-import { toast } from "sonner";
-import { useCartStore } from "@/store/useCartStore";
+import { useNavigate } from '@tanstack/react-router';
+import { useCartStore } from '@/store/useCartStore';
+import { Product } from '@/types/Product';
 
 interface ProductCardProps {
   product: Product;
@@ -11,12 +8,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
-  const addItem = useCartStore((state) => state.addItem);
-
-  const handleAddToCart = () => {
-    addItem(product);
-    toast.success("Product added to cart");
-  };
+  const { addItem } = useCartStore();
 
   const handleViewDetails = () => {
     navigate({
@@ -25,31 +17,30 @@ const ProductCard = ({ product }: ProductCardProps) => {
     });
   };
 
+  const handleAddToCart = () => {
+    addItem(product);
+  };
+
   return (
-    <Card className="w-full">
-      <CardHeader>
-        <CardTitle className="line-clamp-1">{product.name}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div className="aspect-square relative">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="object-cover w-full h-full rounded-md"
-          />
+    <div className="card">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="w-full h-48 object-cover rounded-t-lg"
+      />
+      <div className="p-4">
+        <h2 className="text-lg font-semibold">{product.name}</h2>
+        <p className="text-gray-600">${product.price}</p>
+        <div className="mt-4 flex justify-between">
+          <button onClick={handleViewDetails} className="btn btn-primary">
+            View Details
+          </button>
+          <button onClick={handleAddToCart} className="btn btn-secondary">
+            Add to Cart
+          </button>
         </div>
-        <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
-        <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
-      </CardContent>
-      <CardFooter className="flex gap-2">
-        <Button onClick={handleViewDetails} variant="outline" className="flex-1">
-          View Details
-        </Button>
-        <Button onClick={handleAddToCart} className="flex-1">
-          Add to Cart
-        </Button>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 };
 

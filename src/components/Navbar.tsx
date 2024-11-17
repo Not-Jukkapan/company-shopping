@@ -1,8 +1,14 @@
-import { ShoppingCart, User, LogOut } from "lucide-react";
+import { ShoppingCart, User, LogOut, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from '@tanstack/react-router';
 import { useNavigate } from '@tanstack/react-router';
 import { useAuth } from '@/lib/auth';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface NavbarProps {
   cartItemCount: number;
@@ -25,9 +31,21 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
               <Link to="/shop" className="text-gray-600 hover:text-primary">
                 Shop
               </Link>
-              <Link to="/industrial-solutions" className="text-gray-600 hover:text-primary">
-                Solutions
-              </Link>
+              
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-gray-600 hover:text-primary">
+                  Solutions <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/industrial-solutions' })}>
+                    Industrial Solutions
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/project-references' })}>
+                    Project References
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <Link to="/company-profile" className="text-gray-600 hover:text-primary">
                 About Us
               </Link>
