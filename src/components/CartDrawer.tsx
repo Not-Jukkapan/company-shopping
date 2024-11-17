@@ -3,6 +3,8 @@ import { Button } from "./ui/button";
 import { Product } from "@/types/product";
 import { ScrollArea } from "./ui/scroll-area";
 import { X } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -12,7 +14,21 @@ interface CartDrawerProps {
 }
 
 const CartDrawer = ({ isOpen, onClose, items, onRemoveItem }: CartDrawerProps) => {
+  const navigate = useNavigate();
   const total = items.reduce((sum, item) => sum + item.price, 0);
+
+  const handleCheckout = () => {
+    if (items.length === 0) {
+      toast.error("Your cart is empty");
+      return;
+    }
+    
+    // Here you would typically redirect to a checkout page or open a payment modal
+    toast.success("Proceeding to checkout...");
+    // For now, we'll just show a success message
+    toast.success("Order placed successfully!");
+    onClose();
+  };
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -59,7 +75,9 @@ const CartDrawer = ({ isOpen, onClose, items, onRemoveItem }: CartDrawerProps) =
               <span className="font-medium">Total:</span>
               <span className="font-bold">${total.toFixed(2)}</span>
             </div>
-            <Button className="w-full">Checkout</Button>
+            <Button className="w-full" onClick={handleCheckout}>
+              Checkout
+            </Button>
           </div>
         )}
       </SheetContent>

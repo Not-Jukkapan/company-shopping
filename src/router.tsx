@@ -2,6 +2,7 @@ import { Route, RootRoute, Router } from '@tanstack/react-router';
 import { Outlet } from '@tanstack/react-router';
 import Navbar from '@/components/Navbar';
 import Index from '@/pages/Index';
+import Shop from '@/pages/Shop';
 import CompanyProfile from '@/pages/CompanyProfile';
 import IndustrialSolutions from '@/pages/IndustrialSolutions';
 import SignIn from '@/pages/auth/SignIn';
@@ -20,14 +21,6 @@ const RootComponent = () => {
   );
 };
 
-// Auth guard for protected routes
-const authGuard = () => {
-  const { isAuthenticated } = useAuth.getState();
-  if (!isAuthenticated) {
-    throw new Error('Not authenticated');
-  }
-};
-
 const rootRoute = new RootRoute({
   component: RootComponent,
 });
@@ -36,6 +29,12 @@ const indexRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/',
   component: Index,
+});
+
+const shopRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/shop',
+  component: Shop,
 });
 
 const productDetailRoute = new Route({
@@ -49,14 +48,12 @@ const companyProfileRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/company-profile',
   component: CompanyProfile,
-  beforeLoad: authGuard,
 });
 
 const industrialSolutionsRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/industrial-solutions',
   component: IndustrialSolutions,
-  beforeLoad: authGuard,
 });
 
 const signInRoute = new Route({
@@ -73,6 +70,7 @@ const registerRoute = new Route({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
+  shopRoute,
   productDetailRoute,
   companyProfileRoute,
   industrialSolutionsRoute,
