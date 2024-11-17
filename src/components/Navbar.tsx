@@ -1,4 +1,4 @@
-import { ShoppingCart, User } from "lucide-react";
+import { ShoppingCart, User, LogOut } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   NavigationMenu,
@@ -9,6 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
 import { Link } from '@tanstack/react-router';
+import { useAuth } from "@/lib/auth";
 
 interface NavbarProps {
   onCartClick: () => void;
@@ -16,6 +17,8 @@ interface NavbarProps {
 }
 
 const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
+  const { isAuthenticated, signOut } = useAuth();
+
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
@@ -107,10 +110,25 @@ const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
           </div>
 
           <div className="flex items-center gap-4">
-            <Button variant="ghost" className="flex items-center gap-2">
-              <User size={20} />
-              <span className="hidden sm:inline">Account</span>
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Button variant="ghost" className="flex items-center gap-2">
+                  <User size={20} />
+                  <span className="hidden sm:inline">Account</span>
+                </Button>
+                <Button onClick={() => signOut()} variant="ghost" className="flex items-center gap-2">
+                  <LogOut size={20} />
+                  <span className="hidden sm:inline">Sign Out</span>
+                </Button>
+              </>
+            ) : (
+              <Link to="/auth/signin">
+                <Button variant="ghost" className="flex items-center gap-2">
+                  <User size={20} />
+                  <span className="hidden sm:inline">Sign In</span>
+                </Button>
+              </Link>
+            )}
             
             <Button onClick={onCartClick} variant="outline" className="flex items-center gap-2 relative">
               <ShoppingCart size={20} />

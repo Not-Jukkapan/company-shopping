@@ -1,10 +1,13 @@
-import { Route, RootRoute, Router } from '@tanstack/react-router';
+import { Route, RootRoute, Router, redirect } from '@tanstack/react-router';
 import { Outlet } from '@tanstack/react-router';
 import Navbar from '@/components/Navbar';
 import Index from '@/pages/Index';
 import CompanyProfile from '@/pages/CompanyProfile';
 import IndustrialSolutions from '@/pages/IndustrialSolutions';
+import SignIn from '@/pages/auth/SignIn';
+import Register from '@/pages/auth/Register';
 import { useState } from 'react';
+import { useAuth } from './lib/auth';
 
 const RootComponent = () => {
   const [cartItems, setCartItems] = useState<any[]>([]);
@@ -14,6 +17,19 @@ const RootComponent = () => {
       <Outlet />
     </div>
   );
+};
+
+// Auth guard for protected routes
+const authGuard = () => {
+  const { isAuthenticated } = useAuth.getState();
+  if (!isAuthenticated) {
+    throw redirect({
+      to: '/auth/signin',
+      search: {
+        redirect: window.location.pathname,
+      },
+    });
+  }
 };
 
 const rootRoute = new RootRoute({
@@ -30,18 +46,34 @@ const companyProfileRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/company-profile',
   component: CompanyProfile,
+  beforeLoad: authGuard,
 });
 
 const industrialSolutionsRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/industrial-solutions',
   component: IndustrialSolutions,
+  beforeLoad: authGuard,
+});
+
+const signInRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/auth/signin',
+  component: SignIn,
+});
+
+const registerRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/auth/register',
+  component: Register,
 });
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
   companyProfileRoute,
   industrialSolutionsRoute,
+  signInRoute,
+  registerRoute,
 ]);
 
 export const router = new Router({ routeTree });
