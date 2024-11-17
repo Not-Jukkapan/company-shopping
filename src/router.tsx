@@ -22,6 +22,7 @@ import Careers from '@/pages/Careers';
 import Support from '@/pages/Support';
 import News from '@/pages/News';
 import CaseStudyDetail from '@/pages/CaseStudyDetail';
+import Contact from '@/pages/Contact';
 import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
@@ -165,6 +166,12 @@ const newsRoute = new Route({
   component: News,
 });
 
+const contactRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: 'contact',
+  component: Contact,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   shopRoute,
@@ -187,6 +194,7 @@ const routeTree = rootRoute.addChildren([
   careersRoute,
   supportRoute,
   newsRoute,
+  contactRoute,
 ]);
 
 export const router = new Router({ routeTree });
