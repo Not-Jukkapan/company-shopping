@@ -13,7 +13,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleViewDetails = () => {
     navigate({
-      to: '/product/$productId',
+      to: '/product/:productId',
       params: { productId: product.id.toString() }
     });
   };
