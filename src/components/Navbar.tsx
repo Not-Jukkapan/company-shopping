@@ -1,8 +1,9 @@
-import { ShoppingCart, User, LogOut, ChevronDown, Menu } from "lucide-react";
+import { ShoppingCart, User, LogOut, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
 import { Link } from '@tanstack/react-router';
 import { useNavigate } from '@tanstack/react-router';
 import { useAuth } from '@/lib/auth';
+import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,6 +19,7 @@ interface NavbarProps {
 const Navbar = ({ cartItemCount }: NavbarProps) => {
   const { isAuthenticated, signOut } = useAuth();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   const NavLinks = () => (
     <>
@@ -69,10 +71,6 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-
-      <Link to="/contact" className="text-gray-600 hover:text-primary">
-        Contact
-      </Link>
     </>
   );
 

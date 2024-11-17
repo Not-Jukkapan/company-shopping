@@ -5,6 +5,7 @@ import type { Product, CreateProduct, UpdateProduct } from '@/schemas/product';
 
 const PRODUCTS_KEY = 'products';
 
+// API functions
 const fetchProducts = async (): Promise<Product[]> => {
   if (config.USE_MOCK_DATA) {
     return mockProducts;
@@ -14,7 +15,7 @@ const fetchProducts = async (): Promise<Product[]> => {
   return response.json();
 };
 
-const fetchProduct = async (id: string): Promise<Product> => {
+const fetchProduct = async (id: number): Promise<Product> => {
   if (config.USE_MOCK_DATA) {
     const product = mockProducts.find(p => p.id === id);
     if (!product) throw new Error('Product not found');
@@ -33,7 +34,7 @@ export const useProducts = () => {
   });
 };
 
-export const useProduct = (id: string) => {
+export const useProduct = (id: number) => {
   return useQuery({
     queryKey: [PRODUCTS_KEY, id],
     queryFn: () => fetchProduct(id),
@@ -66,7 +67,7 @@ export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
   
   return useMutation({
-    mutationFn: async ({ id, data }: { id: string; data: UpdateProduct }) => {
+    mutationFn: async ({ id, data }: { id: number; data: UpdateProduct }) => {
       if (config.USE_MOCK_DATA) {
         throw new Error('Update operation not supported in mock mode');
       }

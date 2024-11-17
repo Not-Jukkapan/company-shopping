@@ -1,9 +1,8 @@
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
-  image: string;
-  imageUrl?: string; // For backward compatibility
   description: string;
+  image: string;
   category: string;
 }
