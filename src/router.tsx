@@ -39,7 +39,7 @@ const shopRoute = new Route({
 
 const productDetailRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/product/$id',
+  path: '/product/$productId',
   component: ProductDetail,
   validateSearch: (search: Record<string, unknown>) => ({ id: String(search.id) }),
 });

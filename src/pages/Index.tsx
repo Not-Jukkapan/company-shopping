@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
+import { ArrowRight, Factory, Cpu, Network } from "lucide-react";
 
 const Index = () => {
   return (
@@ -9,21 +10,22 @@ const Index = () => {
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">
-              Industrial Automation Solutions
+              Chaiudom Industrial Automation Solutions
             </h1>
             <p className="text-xl mb-8">
-              Leading provider of Siemens automation components and industrial solutions. 
-              Empowering industry with cutting-edge technology and reliable automation products.
+              Leading provider of industrial automation, IIoT solutions, and system integration services. 
+              Empowering industry with cutting-edge technology and reliable automation solutions.
             </p>
             <div className="space-x-4">
               <Link to="/shop">
                 <Button size="lg" className="bg-primary hover:bg-primary/90">
                   Browse Products
+                  <ArrowRight className="ml-2" size={20} />
                 </Button>
               </Link>
               <Link to="/industrial-solutions">
                 <Button size="lg" variant="outline" className="bg-white/10 hover:bg-white/20">
-                  Learn More
+                  Our Solutions
                 </Button>
               </Link>
             </div>
@@ -34,24 +36,27 @@ const Index = () => {
       {/* Features Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Us</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Our Expertise</h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="text-center p-6">
-              <h3 className="text-xl font-semibold mb-4">Certified Siemens Partner</h3>
+            <div className="text-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <Factory className="mx-auto mb-4 h-12 w-12 text-primary" />
+              <h3 className="text-xl font-semibold mb-4">Industrial Automation</h3>
               <p className="text-gray-600">
-                Official distributor of Siemens automation products with certified expertise
+                Complete automation solutions using Siemens PLCs, HMIs, and drives for manufacturing excellence
               </p>
             </div>
-            <div className="text-center p-6">
-              <h3 className="text-xl font-semibold mb-4">Technical Support</h3>
+            <div className="text-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <Cpu className="mx-auto mb-4 h-12 w-12 text-primary" />
+              <h3 className="text-xl font-semibold mb-4">IIoT Solutions</h3>
               <p className="text-gray-600">
-                Expert technical support and consultation for your automation projects
+                Smart factory solutions with Industrial Internet of Things technology for real-time monitoring and control
               </p>
             </div>
-            <div className="text-center p-6">
-              <h3 className="text-xl font-semibold mb-4">Fast Delivery</h3>
+            <div className="text-center p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+              <Network className="mx-auto mb-4 h-12 w-12 text-primary" />
+              <h3 className="text-xl font-semibold mb-4">System Integration</h3>
               <p className="text-gray-600">
-                Quick shipping and reliable delivery of industrial components
+                Seamless integration of industrial systems, networks, and software for optimal performance
               </p>
             </div>
           </div>
