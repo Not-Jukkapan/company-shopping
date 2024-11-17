@@ -1,18 +1,22 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ProductGrid } from "@/components/ProductGrid";
+import ProductGrid from "@/components/ProductGrid";
 import { ProductGridSkeleton } from "@/components/ui/skeletons";
+import { Product } from "@/types/Product";
 
 const Shop = () => {
-  const { data, error, isLoading } = useQuery("products", fetchProducts);
-
-  const fetchProducts = async () => {
+  const fetchProducts = async (): Promise<Product[]> => {
     const response = await fetch("/api/products");
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
     return response.json();
   };
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts
+  });
 
   return (
     <div className="container mx-auto px-4 py-8">
