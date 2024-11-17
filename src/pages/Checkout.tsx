@@ -9,6 +9,8 @@ import {
   QrCode,
   MessageCircle,
 } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { Label } from "@/components/ui/label"
 
 const PaymentMethod = {
   CREDIT_CARD: 'credit_card',
@@ -18,13 +20,33 @@ const PaymentMethod = {
 
 type PaymentMethodType = typeof PaymentMethod[keyof typeof PaymentMethod];
 
+const MOCK_PAYMENT_DETAILS = {
+  [PaymentMethod.CREDIT_CARD]: {
+    title: 'Credit Card',
+    description: 'Pay securely with your credit card',
+    icon: CreditCard,
+    details: 'Test Card: 4242 4242 4242 4242, Exp: Any future date, CVV: Any 3 digits'
+  },
+  [PaymentMethod.QR_CODE]: {
+    title: 'QR Code',
+    description: 'Scan QR code with your banking app',
+    icon: QrCode,
+    details: 'Scan the QR code that will be generated after confirming the order'
+  },
+  [PaymentMethod.LINE]: {
+    title: 'LINE Pay',
+    description: 'Pay using LINE Pay',
+    icon: MessageCircle,
+    details: 'LINE ID: @chaiudom (Test Account)'
+  }
+};
+
 const Checkout = () => {
   const { items, getTotalPrice, clearCart } = useCartStore();
   const navigate = useNavigate();
   const [selectedPayment, setSelectedPayment] = useState<PaymentMethodType>(PaymentMethod.CREDIT_CARD);
 
   const handlePayment = () => {
-    // Mock payment processing
     toast.success('Processing payment...');
     setTimeout(() => {
       clearCart();
@@ -36,6 +58,8 @@ const Checkout = () => {
     navigate({ to: '/shop' });
     return null;
   }
+
+  const selectedPaymentDetails = MOCK_PAYMENT_DETAILS[selectedPayment];
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -62,32 +86,31 @@ const Checkout = () => {
 
           <Card className="p-6">
             <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Button
-                variant={selectedPayment === PaymentMethod.CREDIT_CARD ? "default" : "outline"}
-                className="flex items-center gap-2"
-                onClick={() => setSelectedPayment(PaymentMethod.CREDIT_CARD)}
-              >
-                <CreditCard className="h-4 w-4" />
-                Credit Card
-              </Button>
-              <Button
-                variant={selectedPayment === PaymentMethod.QR_CODE ? "default" : "outline"}
-                className="flex items-center gap-2"
-                onClick={() => setSelectedPayment(PaymentMethod.QR_CODE)}
-              >
-                <QrCode className="h-4 w-4" />
-                QR Code
-              </Button>
-              <Button
-                variant={selectedPayment === PaymentMethod.LINE ? "default" : "outline"}
-                className="flex items-center gap-2"
-                onClick={() => setSelectedPayment(PaymentMethod.LINE)}
-              >
-                <MessageCircle className="h-4 w-4" />
-                LINE Contact
-              </Button>
-            </div>
+            <RadioGroup
+              value={selectedPayment}
+              onValueChange={(value) => setSelectedPayment(value as PaymentMethodType)}
+              className="grid gap-4"
+            >
+              {Object.entries(MOCK_PAYMENT_DETAILS).map(([key, { title, description, icon: Icon }]) => (
+                <div key={key} className="flex items-center space-x-2">
+                  <RadioGroupItem value={key} id={key} />
+                  <Label htmlFor={key} className="flex items-center gap-2 cursor-pointer">
+                    <Icon className="h-4 w-4" />
+                    <div>
+                      <div className="font-medium">{title}</div>
+                      <div className="text-sm text-gray-500">{description}</div>
+                    </div>
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+
+            {selectedPaymentDetails && (
+              <div className="mt-4 p-4 bg-gray-50 rounded-md">
+                <h4 className="font-medium mb-2">Test Details</h4>
+                <p className="text-sm text-gray-600">{selectedPaymentDetails.details}</p>
+              </div>
+            )}
           </Card>
         </div>
 

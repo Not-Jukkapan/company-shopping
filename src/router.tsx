@@ -11,6 +11,7 @@ import ProductDetail from '@/pages/ProductDetail';
 import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
 import PaymentSuccess from '@/pages/PaymentSuccess';
+import Profile from '@/pages/profile/Profile'; // New import
 import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
@@ -93,6 +94,12 @@ const paymentSuccessRoute = new Route({
   component: PaymentSuccess,
 });
 
+const profileRoute = new Route({ // New route for profile
+  getParentRoute: () => rootRoute,
+  path: '/profile',
+  component: Profile, // Use the Profile component
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   shopRoute,
@@ -104,6 +111,7 @@ const routeTree = rootRoute.addChildren([
   cartRoute,
   checkoutRoute,
   paymentSuccessRoute,
+  profileRoute, // Include the new profile route
 ]);
 
 export const router = new Router({ routeTree });
