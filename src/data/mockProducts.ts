@@ -6,7 +6,7 @@ export const mockProducts: Product[] = [
     name: "Siemens S7-1200 PLC",
     price: 799.99,
     description: "Compact and flexible programmable logic controller for industrial automation",
-    image: "/placeholder.svg",
+    image: "https://picsum.photos/800/800",
     category: "Controllers"
   },
   {
