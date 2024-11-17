@@ -6,6 +6,7 @@ import CompanyProfile from '@/pages/CompanyProfile';
 import IndustrialSolutions from '@/pages/IndustrialSolutions';
 import SignIn from '@/pages/auth/SignIn';
 import Register from '@/pages/auth/Register';
+import ProductDetail from '@/pages/ProductDetail';
 import { useState } from 'react';
 import { useAuth } from './lib/auth';
 
@@ -37,6 +38,12 @@ const indexRoute = new Route({
   component: Index,
 });
 
+const productDetailRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/product/$productId',
+  component: ProductDetail,
+});
+
 const companyProfileRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/company-profile',
@@ -65,6 +72,7 @@ const registerRoute = new Route({
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
+  productDetailRoute,
   companyProfileRoute,
   industrialSolutionsRoute,
   signInRoute,
