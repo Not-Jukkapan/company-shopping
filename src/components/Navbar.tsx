@@ -46,6 +46,9 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
                   <DropdownMenuItem onClick={() => navigate({ to: '/services' })}>
                     Services
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/case-studies' })}>
+                    Case Studies
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
 
@@ -53,9 +56,26 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
                 Resources
               </Link>
 
-              <Link to="/company-profile" className="text-gray-600 hover:text-primary">
-                About Us
+              <Link to="/support" className="text-gray-600 hover:text-primary">
+                Support
               </Link>
+
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-1 text-gray-600 hover:text-primary">
+                  Company <ChevronDown className="h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/company-profile' })}>
+                    About Us
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/careers' })}>
+                    Careers
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/news' })}>
+                    News & Events
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
 

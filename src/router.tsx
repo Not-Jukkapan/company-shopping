@@ -16,6 +16,10 @@ import PaymentSuccess from '@/pages/PaymentSuccess';
 import Profile from '@/pages/profile/Profile';
 import Services from '@/pages/Services';
 import Resources from '@/pages/Resources';
+import CaseStudies from '@/pages/CaseStudies';
+import Careers from '@/pages/Careers';
+import Support from '@/pages/Support';
+import News from '@/pages/News';
 import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
@@ -108,6 +112,26 @@ const routes = [
     getParentRoute: () => rootRoute,
     path: '/resources',
     component: Resources,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/case-studies',
+    component: CaseStudies,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/careers',
+    component: Careers,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/support',
+    component: Support,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/news',
+    component: News,
   }),
 ];
 
