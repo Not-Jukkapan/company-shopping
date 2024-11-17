@@ -2,19 +2,30 @@ import { useEffect, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { useNavigate } from '@tanstack/react-router';
 
+interface Project {
+  id: string;
+  title: string;
+  description: string;
+}
+
 const ProjectReferences = () => {
   const navigate = useNavigate();
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
-    // Fetch project references from an API or service
-    const fetchProjects = async () => {
-      const response = await fetch('/api/projects'); // Example API endpoint
-      const data = await response.json();
-      setProjects(data);
-    };
-
-    fetchProjects();
+    // Mock data for now
+    setProjects([
+      {
+        id: '1',
+        title: 'Factory Automation Project',
+        description: 'Complete automation solution for a manufacturing plant'
+      },
+      {
+        id: '2',
+        title: 'Smart Warehouse System',
+        description: 'IoT-based warehouse management system'
+      }
+    ]);
   }, []);
 
   return (
