@@ -45,7 +45,7 @@ const shopRoute = new Route({
 
 const productDetailRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/product/$productId',
+  path: '/product/:productId',
   component: ProductDetail,
 });
 
@@ -57,7 +57,7 @@ const projectReferencesRoute = new Route({
 
 const projectDetailRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/project/$projectId',
+  path: '/project/:projectId',
   component: ProjectDetail,
 });
 
