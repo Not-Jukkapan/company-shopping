@@ -4,7 +4,7 @@ import { Product } from '@/types/Product';
 interface CartStore {
   items: Product[];
   addItem: (item: Product) => void;
-  removeItem: (itemId: number) => void;
+  removeItem: (itemId: string) => void;
   clearCart: () => void;
   getTotalPrice: () => number;
 }

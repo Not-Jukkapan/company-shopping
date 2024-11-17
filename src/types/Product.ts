@@ -2,8 +2,8 @@ export interface Product {
   id: string;
   name: string;
   price: number;
-  imageUrl: string;
-  description?: string;
-  category?: string;
-  stock?: number;
+  image: string;
+  imageUrl?: string; // For backward compatibility
+  description: string;
+  category: string;
 }
