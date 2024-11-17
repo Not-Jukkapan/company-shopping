@@ -9,6 +9,7 @@ interface Project {
   client: string;
   date: string;
   image: string;
+  category: string;
 }
 
 const mockProjects: Project[] = [
@@ -18,7 +19,8 @@ const mockProjects: Project[] = [
     description: "Implementation of a complete automation system for manufacturing plant",
     client: "ABC Manufacturing",
     date: "2023",
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    category: "Automation"
   },
   {
     id: "2",
@@ -26,7 +28,8 @@ const mockProjects: Project[] = [
     description: "IoT-based warehouse management and automation system",
     client: "XYZ Logistics",
     date: "2023",
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    category: "IoT Solutions"
   },
   {
     id: "3",
@@ -34,7 +37,17 @@ const mockProjects: Project[] = [
     description: "Modernization of production line with advanced PLC systems",
     client: "Industrial Corp",
     date: "2022",
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    category: "Automation"
+  },
+  {
+    id: "4",
+    title: "Smart Factory Implementation",
+    description: "Complete smart factory solution with IoT sensors and real-time monitoring",
+    client: "Tech Manufacturing",
+    date: "2023",
+    image: "/placeholder.svg",
+    category: "IoT Solutions"
   }
 ];
 
@@ -71,31 +84,45 @@ const ProjectReferences = () => {
     );
   }
 
+  // Group projects by category
+  const projectsByCategory = projects?.reduce((acc: Record<string, Project[]>, project) => {
+    if (!acc[project.category]) {
+      acc[project.category] = [];
+    }
+    acc[project.category].push(project);
+    return acc;
+  }, {});
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Project References</h1>
-      <div className="grid gap-6">
-        {projects?.map((project) => (
-          <Card key={project.id} className="hover:shadow-lg transition-shadow">
-            <CardHeader>
-              <CardTitle className="flex justify-between items-center">
-                <span>{project.title}</span>
-                <span className="text-sm text-muted-foreground">{project.date}</span>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground mb-4">{project.description}</p>
-              <p className="text-sm mb-4">Client: {project.client}</p>
-              <button 
-                onClick={() => handleViewDetails(project.id)}
-                className="text-primary hover:underline"
-              >
-                View Details
-              </button>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+      {projectsByCategory && Object.entries(projectsByCategory).map(([category, categoryProjects]) => (
+        <div key={category} className="mb-12">
+          <h2 className="text-2xl font-semibold mb-6 text-primary">{category}</h2>
+          <div className="grid gap-6">
+            {categoryProjects.map((project) => (
+              <Card key={project.id} className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex justify-between items-center">
+                    <span>{project.title}</span>
+                    <span className="text-sm text-muted-foreground">{project.date}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground mb-4">{project.description}</p>
+                  <p className="text-sm mb-4">Client: {project.client}</p>
+                  <button 
+                    onClick={() => handleViewDetails(project.id)}
+                    className="text-primary hover:underline"
+                  >
+                    View Details
+                  </button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 };
