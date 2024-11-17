@@ -20,12 +20,12 @@ const fetchProductDetails = async (id: string): Promise<Product> => {
 };
 
 const ProductDetail = () => {
-  const { productId } = useParams();
+  const { id } = useParams();
   const [quantity, setQuantity] = useState(1);
 
   const { data: product, isLoading } = useQuery({
-    queryKey: ['product', productId],
-    queryFn: () => fetchProductDetails(productId),
+    queryKey: ['product', id],
+    queryFn: () => fetchProductDetails(id),
   });
 
   const handleAddToCart = () => {

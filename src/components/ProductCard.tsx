@@ -19,7 +19,7 @@ const ProductCard = ({ product, onAddToCart, totalProducts }: ProductCardProps) 
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg animate-fade-in">
-      <Link to="/product/$productId" params={{ productId: String(product.id) }}>
+      <Link to="/product/$id" params={{ id: String(product.id) }}>
         <div className="aspect-square overflow-hidden relative">
           <img
             src={product.image}
@@ -34,8 +34,8 @@ const ProductCard = ({ product, onAddToCart, totalProducts }: ProductCardProps) 
       
       <div className="p-4">
         <Link 
-          to="/product/$productId" 
-          params={{ productId: String(product.id) }}
+          to="/product/$id" 
+          params={{ id: String(product.id) }}
           className="block"
         >
           <h3 className="font-semibold text-lg mb-2 hover:text-primary">{product.name}</h3>

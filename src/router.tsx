@@ -40,7 +40,7 @@ const indexRoute = new Route({
 
 const productDetailRoute = new Route({
   getParentRoute: () => rootRoute,
-  path: '/product/$productId',
+  path: '/product/$id',
   component: ProductDetail,
 });
 
