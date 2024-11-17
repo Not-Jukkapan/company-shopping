@@ -10,6 +10,7 @@ import {
 } from "./ui/navigation-menu";
 import { Link } from '@tanstack/react-router';
 import { useNavigate } from '@tanstack/react-router';
+import { useAuth } from '@/lib/auth';
 
 interface NavbarProps {
   cartItemCount: number;

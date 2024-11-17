@@ -44,7 +44,11 @@ const productDetailRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/product/$productId',
   component: ProductDetail,
-  validateSearch: (search: Record<string, unknown>) => ({ id: String(search.id) }),
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      productId: String(search.id || '')
+    };
+  },
 });
 
 const companyProfileRoute = new Route({

@@ -1,60 +1,56 @@
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Product } from "@/types/product";
-import { Card } from "./ui/card";
-import { Button } from "./ui/button";
-import { ShoppingCart } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
-import { Link } from "@tanstack/react-router";
-import { useCartStore } from "@/store/useCartStore";
 
 interface ProductCardProps {
   product: Product;
-  totalProducts: number;
+  onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard = ({ product, totalProducts }: ProductCardProps) => {
-  const addItem = useCartStore((state) => state.addItem);
+const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    addItem(product);
-    toast.success("Added to cart!");
+    if (onAddToCart) {
+      onAddToCart(product);
+      toast.success("Product added to cart");
+    }
+  };
+
+  const handleViewDetails = () => {
+    navigate({
+      to: '/product/$productId',
+      params: { productId: String(product.id) },
+      search: { id: String(product.id) }
+    });
   };
 
   return (
-    <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg animate-fade-in">
-      <Link 
-        to="/product/$productId"
-        search={{ id: String(product.id) }}
-      >
-        <div className="aspect-square overflow-hidden relative">
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="line-clamp-1">{product.name}</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="aspect-square relative">
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            className="object-cover w-full h-full rounded-md"
           />
-          <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded text-sm">
-            Stock: {totalProducts}
-          </div>
         </div>
-      </Link>
-      
-      <div className="p-4">
-        <Link 
-          to="/product/$productId"
-          search={{ id: String(product.id) }}
-          className="block"
-        >
-          <h3 className="font-semibold text-lg mb-2 hover:text-primary">{product.name}</h3>
-        </Link>
-        <p className="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
-        
-        <Button
-          onClick={handleAddToCart}
-          className="w-full flex items-center justify-center gap-2"
-        >
-          <ShoppingCart size={18} />
+        <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
+        <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        <Button onClick={handleViewDetails} variant="outline" className="flex-1">
+          View Details
+        </Button>
+        <Button onClick={handleAddToCart} className="flex-1">
           Add to Cart
         </Button>
-      </div>
+      </CardFooter>
     </Card>
   );
 };
