@@ -31,42 +31,32 @@ const rootRoute = new RootRoute({
   component: RootComponent,
 });
 
-const indexRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  component: Index,
-});
-
-const shopRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/shop',
-  component: Shop,
-});
-
-const productDetailRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/product/:productId',
-  component: ProductDetail,
-});
-
-const projectReferencesRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/project-references',
-  component: ProjectReferences,
-});
-
-const projectDetailRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/project/:projectId',
-  component: ProjectDetail,
-});
-
 const routes = [
-  indexRoute,
-  shopRoute,
-  productDetailRoute,
-  projectReferencesRoute,
-  projectDetailRoute,
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/',
+    component: Index,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/shop',
+    component: Shop,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/product/$id',
+    component: ProductDetail,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/project-references',
+    component: ProjectReferences,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/project/$id',
+    component: ProjectDetail,
+  }),
   new Route({
     getParentRoute: () => rootRoute,
     path: '/auth/signin',
