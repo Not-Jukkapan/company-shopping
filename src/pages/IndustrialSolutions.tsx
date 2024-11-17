@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -29,47 +30,65 @@ const IndustrialSolutions = () => {
           
           <TabsContent value="plc">
             <div className="grid md:grid-cols-3 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <CircuitBoard className="h-5 w-5" />
-                    PLC Programming
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Expert programming services for Siemens S7 series PLCs, including TIA Portal integration
-                  </p>
-                </CardContent>
-              </Card>
+              <Link
+                to="/industrial-solutions/$solutionId"
+                params={{ solutionId: "plc-programming" }}
+                className="block hover:scale-105 transition-transform"
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <CircuitBoard className="h-5 w-5" />
+                      PLC Programming
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Expert programming services for Siemens S7 series PLCs, including TIA Portal integration
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Factory className="h-5 w-5" />
-                    Process Automation
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Complete process automation solutions using Siemens PCS 7 and SCADA systems
-                  </p>
-                </CardContent>
-              </Card>
+              <Link
+                to="/industrial-solutions/$solutionId"
+                params={{ solutionId: "process-automation" }}
+                className="block hover:scale-105 transition-transform"
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Factory className="h-5 w-5" />
+                      Process Automation
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Complete process automation solutions using Siemens PCS 7 and SCADA systems
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <Cpu className="h-5 w-5" />
-                    Hardware Integration
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Seamless integration of Siemens components with existing industrial systems
-                  </p>
-                </CardContent>
-              </Card>
+              <Link
+                to="/industrial-solutions/$solutionId"
+                params={{ solutionId: "hardware-integration" }}
+                className="block hover:scale-105 transition-transform"
+              >
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Cpu className="h-5 w-5" />
+                      Hardware Integration
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">
+                      Seamless integration of Siemens components with existing industrial systems
+                    </p>
+                  </CardContent>
+                </Card>
+              </Link>
             </div>
           </TabsContent>
           

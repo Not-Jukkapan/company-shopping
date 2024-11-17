@@ -5,6 +5,7 @@ import Index from '@/pages/Index';
 import Shop from '@/pages/Shop';
 import CompanyProfile from '@/pages/CompanyProfile';
 import IndustrialSolutions from '@/pages/IndustrialSolutions';
+import SolutionDetail from '@/pages/SolutionDetail';
 import ProjectReferences from '@/pages/ProjectReferences';
 import ProjectDetail from '@/pages/ProjectDetail';
 import SignIn from '@/pages/auth/SignIn';
@@ -37,141 +38,92 @@ const rootRoute = new RootRoute({
   component: RootComponent,
 });
 
-const indexRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/',
-  component: Index,
-});
-
-const shopRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/shop',
-  component: Shop,
-});
-
-const productRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/product/$productId',
-  component: ProductDetail,
-});
-
-const projectsRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/project-references',
-  component: ProjectReferences,
-});
-
-const projectDetailRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/project/$projectId',
-  component: ProjectDetail,
-});
-
-const signInRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/auth/signin',
-  component: SignIn,
-});
-
-const registerRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/auth/register',
-  component: Register,
-});
-
-const cartRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/cart',
-  component: Cart,
-});
-
-const checkoutRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/checkout',
-  component: Checkout,
-});
-
-const paymentSuccessRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/payment-success',
-  component: PaymentSuccess,
-});
-
-const profileRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/profile',
-  component: Profile,
-});
-
-const companyProfileRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/company-profile',
-  component: CompanyProfile,
-});
-
-const industrialSolutionsRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/industrial-solutions',
-  component: IndustrialSolutions,
-});
-
-const servicesRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/services',
-  component: Services,
-});
-
-const resourcesRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/resources',
-  component: Resources,
-});
-
-const caseStudiesRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/case-studies',
-  component: CaseStudies,
-});
-
-const careersRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/careers',
-  component: Careers,
-});
-
-const supportRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/support',
-  component: Support,
-});
-
-const newsRoute = new Route({
-  getParentRoute: () => rootRoute,
-  path: '/news',
-  component: News,
-});
-
+// Define routes
 const routes = [
-  indexRoute,
-  shopRoute,
-  productRoute,
-  projectsRoute,
-  projectDetailRoute,
-  signInRoute,
-  registerRoute,
-  cartRoute,
-  checkoutRoute,
-  paymentSuccessRoute,
-  profileRoute,
-  companyProfileRoute,
-  industrialSolutionsRoute,
-  servicesRoute,
-  resourcesRoute,
-  caseStudiesRoute,
-  careersRoute,
-  supportRoute,
-  newsRoute,
-];
+  {
+    path: '/',
+    component: Index,
+  },
+  {
+    path: '/shop',
+    component: Shop,
+  },
+  {
+    path: '/product/$productId',
+    component: ProductDetail,
+  },
+  {
+    path: '/project-references',
+    component: ProjectReferences,
+  },
+  {
+    path: '/project/$projectId',
+    component: ProjectDetail,
+  },
+  {
+    path: '/auth/signin',
+    component: SignIn,
+  },
+  {
+    path: '/auth/register',
+    component: Register,
+  },
+  {
+    path: '/cart',
+    component: Cart,
+  },
+  {
+    path: '/checkout',
+    component: Checkout,
+  },
+  {
+    path: '/payment-success',
+    component: PaymentSuccess,
+  },
+  {
+    path: '/profile',
+    component: Profile,
+  },
+  {
+    path: '/company-profile',
+    component: CompanyProfile,
+  },
+  {
+    path: '/industrial-solutions',
+    component: IndustrialSolutions,
+  },
+  {
+    path: '/industrial-solutions/$solutionId',
+    component: SolutionDetail,
+  },
+  {
+    path: '/services',
+    component: Services,
+  },
+  {
+    path: '/resources',
+    component: Resources,
+  },
+  {
+    path: '/case-studies',
+    component: CaseStudies,
+  },
+  {
+    path: '/careers',
+    component: Careers,
+  },
+  {
+    path: '/support',
+    component: Support,
+  },
+  {
+    path: '/news',
+    component: News,
+  },
+].map(route => new Route({
+  getParentRoute: () => rootRoute,
+  ...route,
+}));
 
 const routeTree = rootRoute.addChildren(routes);
 
