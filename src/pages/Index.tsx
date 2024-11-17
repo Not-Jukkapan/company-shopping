@@ -10,7 +10,7 @@ const Index = () => {
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="max-w-3xl">
             <h1 className="text-5xl font-bold mb-6">
-              Chaiudom Industrial Automation Solutions
+              TechCompany Industrial Automation Solutions
             </h1>
             <p className="text-xl mb-8">
               Leading provider of industrial automation, IIoT solutions, and system integration services. 
@@ -156,7 +156,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Chaiudom Industrial Automation. All rights reserved.</p>
+            <p>&copy; 2024 TechCompany Industrial Automation. All rights reserved.</p>
           </div>
         </div>
       </footer>

@@ -24,7 +24,7 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link to="/" className="text-2xl font-bold text-primary">
-              Chaiudom
+              TechCompany
             </Link>
             
             <div className="flex gap-6">
