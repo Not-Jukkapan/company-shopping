@@ -69,11 +69,6 @@ const SignIn = () => {
           <Link to="/auth/register" className="text-sm text-blue-600 hover:underline">
             Don't have an account? Register
           </Link>
-          <div>
-            <Link to="/auth/forgot-password" className="text-sm text-blue-600 hover:underline">
-              Forgot your password?
-            </Link>
-          </div>
         </div>
       </div>
     </div>

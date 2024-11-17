@@ -1,4 +1,4 @@
-import { Route, RootRoute, Router, redirect } from '@tanstack/react-router';
+import { Route, RootRoute, Router } from '@tanstack/react-router';
 import { Outlet } from '@tanstack/react-router';
 import Navbar from '@/components/Navbar';
 import Index from '@/pages/Index';
@@ -23,12 +23,7 @@ const RootComponent = () => {
 const authGuard = () => {
   const { isAuthenticated } = useAuth.getState();
   if (!isAuthenticated) {
-    throw redirect({
-      to: '/auth/signin',
-      search: {
-        redirect: window.location.pathname,
-      },
-    });
+    throw new Error('Not authenticated');
   }
 };
 

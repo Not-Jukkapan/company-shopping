@@ -17,5 +17,5 @@ export const useAuth = create<AuthState>((set) => ({
   user: null,
   isAuthenticated: false,
   setUser: (user) => set({ user, isAuthenticated: !!user }),
-  signOut: () => set({ user: null, isAuthenticated: false }),
+  signOut: () => set({ user: null, isAuthenticated: false })
 }));
