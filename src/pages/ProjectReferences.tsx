@@ -70,7 +70,10 @@ const ProjectReferences = () => {
                   </span>
                 ))}
               </div>
-              <Link to="/project/$projectId" params={{ projectId: project.id.toString() }}>
+              <Link 
+                to="/project/$projectId" 
+                params={{ projectId: project.id.toString() }}
+              >
                 <Button className="w-full">
                   View Project Details
                   <ArrowRight className="ml-2 h-4 w-4" />
