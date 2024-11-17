@@ -20,17 +20,17 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const ProductDetail = () => {
-  const { id } = useParams({ from: '/product/$id' });
+  const { productId } = useParams({ from: '/product/$productId' });
   const { addItem } = useCartStore();
   const { toast } = useToast();
   const [selectedImage, setSelectedImage] = useState(0);
 
   const { data: product, isLoading } = useQuery({
-    queryKey: ['product', id],
+    queryKey: ['product', productId],
     queryFn: async () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      const foundProduct = mockProducts.find(p => p.id === Number(id));
+      const foundProduct = mockProducts.find(p => p.id === Number(productId));
       if (!foundProduct) {
         throw new Error('Product not found');
       }
