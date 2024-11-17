@@ -21,6 +21,7 @@ import CaseStudies from '@/pages/CaseStudies';
 import Careers from '@/pages/Careers';
 import Support from '@/pages/Support';
 import News from '@/pages/News';
+import CaseStudyDetail from '@/pages/CaseStudyDetail';
 import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
@@ -140,6 +141,12 @@ const caseStudiesRoute = new Route({
   component: CaseStudies,
 });
 
+const caseStudyDetailRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: 'case-studies/$caseId',
+  component: CaseStudyDetail,
+});
+
 const careersRoute = new Route({
   getParentRoute: () => rootRoute,
   path: 'careers',
@@ -176,6 +183,7 @@ const routeTree = rootRoute.addChildren([
   servicesRoute,
   resourcesRoute,
   caseStudiesRoute,
+  caseStudyDetailRoute,
   careersRoute,
   supportRoute,
   newsRoute,
