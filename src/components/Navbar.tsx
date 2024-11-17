@@ -9,22 +9,22 @@ import {
   NavigationMenuTrigger,
 } from "./ui/navigation-menu";
 import { Link } from '@tanstack/react-router';
-import { useAuth } from "@/lib/auth";
+import { useNavigate } from '@tanstack/react-router';
 
 interface NavbarProps {
-  onCartClick: () => void;
   cartItemCount: number;
 }
 
-const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
+const Navbar = ({ cartItemCount }: NavbarProps) => {
   const { isAuthenticated, signOut } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <Link to="/" className="text-2xl font-bold text-primary">TechSolutions</Link>
+            <Link to="/" className="text-2xl font-bold text-primary">Chaiudom</Link>
             
             <NavigationMenu>
               <NavigationMenuList>
@@ -130,7 +130,11 @@ const Navbar = ({ onCartClick, cartItemCount }: NavbarProps) => {
               </Link>
             )}
             
-            <Button onClick={onCartClick} variant="outline" className="flex items-center gap-2 relative">
+            <Button 
+              onClick={() => navigate({ to: '/cart' })} 
+              variant="outline" 
+              className="flex items-center gap-2 relative"
+            >
               <ShoppingCart size={20} />
               <span className="hidden sm:inline">Cart</span>
               {cartItemCount > 0 && (

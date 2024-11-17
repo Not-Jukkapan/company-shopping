@@ -8,14 +8,17 @@ import IndustrialSolutions from '@/pages/IndustrialSolutions';
 import SignIn from '@/pages/auth/SignIn';
 import Register from '@/pages/auth/Register';
 import ProductDetail from '@/pages/ProductDetail';
-import { useState } from 'react';
-import { useAuth } from './lib/auth';
+import Cart from '@/pages/Cart';
+import Checkout from '@/pages/Checkout';
+import PaymentSuccess from '@/pages/PaymentSuccess';
+import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
-  const [cartItems, setCartItems] = useState<any[]>([]);
+  const cartItems = useCartStore((state) => state.items);
+  
   return (
     <div className="min-h-screen bg-background">
-      <Navbar onCartClick={() => {}} cartItemCount={cartItems.length} />
+      <Navbar cartItemCount={cartItems.length} />
       <Outlet />
     </div>
   );
@@ -68,6 +71,24 @@ const registerRoute = new Route({
   component: Register,
 });
 
+const cartRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/cart',
+  component: Cart,
+});
+
+const checkoutRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/checkout',
+  component: Checkout,
+});
+
+const paymentSuccessRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/payment-success',
+  component: PaymentSuccess,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   shopRoute,
@@ -76,6 +97,9 @@ const routeTree = rootRoute.addChildren([
   industrialSolutionsRoute,
   signInRoute,
   registerRoute,
+  cartRoute,
+  checkoutRoute,
+  paymentSuccessRoute,
 ]);
 
 export const router = new Router({ routeTree });

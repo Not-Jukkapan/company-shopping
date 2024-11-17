@@ -5,8 +5,8 @@ import { toast } from "sonner";
 import { Product } from "@/types/product";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useCartStore } from "@/store/useCartStore";
 
-// Mock function to fetch product details - replace with actual API call
 const fetchProductDetails = async (id: string): Promise<Product> => {
   // Simulating API call
   return {
@@ -20,17 +20,22 @@ const fetchProductDetails = async (id: string): Promise<Product> => {
 };
 
 const ProductDetail = () => {
-  const search = useSearch({ from: '/product/$id' });
+  const search = useSearch();
   const [quantity, setQuantity] = useState(1);
+  const addItem = useCartStore((state) => state.addItem);
 
   const { data: product, isLoading } = useQuery({
     queryKey: ['product', search.id],
-    queryFn: () => fetchProductDetails(search.id),
+    queryFn: () => fetchProductDetails(String(search.id)),
   });
 
   const handleAddToCart = () => {
-    // Add to cart logic here
-    toast.success("Added to cart!");
+    if (product) {
+      for (let i = 0; i < quantity; i++) {
+        addItem(product);
+      }
+      toast.success(`Added ${quantity} item${quantity > 1 ? 's' : ''} to cart!`);
+    }
   };
 
   if (isLoading) {
