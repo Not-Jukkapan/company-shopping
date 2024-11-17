@@ -1,6 +1,12 @@
 import { useNavigate } from '@tanstack/react-router';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
+import { 
+  Accordion, 
+  AccordionContent, 
+  AccordionItem, 
+  AccordionTrigger 
+} from '@/components/ui/accordion';
 
 interface Project {
   id: string;
@@ -96,33 +102,39 @@ const ProjectReferences = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Project References</h1>
-      {projectsByCategory && Object.entries(projectsByCategory).map(([category, categoryProjects]) => (
-        <div key={category} className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6 text-primary">{category}</h2>
-          <div className="grid gap-6">
-            {categoryProjects.map((project) => (
-              <Card key={project.id} className="hover:shadow-lg transition-shadow">
-                <CardHeader>
-                  <CardTitle className="flex justify-between items-center">
-                    <span>{project.title}</span>
-                    <span className="text-sm text-muted-foreground">{project.date}</span>
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground mb-4">{project.description}</p>
-                  <p className="text-sm mb-4">Client: {project.client}</p>
-                  <button 
-                    onClick={() => handleViewDetails(project.id)}
-                    className="text-primary hover:underline"
-                  >
-                    View Details
-                  </button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      ))}
+      <Accordion type="single" collapsible className="w-full space-y-4">
+        {projectsByCategory && Object.entries(projectsByCategory).map(([category, categoryProjects]) => (
+          <AccordionItem key={category} value={category}>
+            <AccordionTrigger className="text-2xl font-semibold text-primary hover:no-underline">
+              {category}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="grid gap-6 pt-4">
+                {categoryProjects.map((project) => (
+                  <Card key={project.id} className="hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <CardTitle className="flex justify-between items-center">
+                        <span>{project.title}</span>
+                        <span className="text-sm text-muted-foreground">{project.date}</span>
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-muted-foreground mb-4">{project.description}</p>
+                      <p className="text-sm mb-4">Client: {project.client}</p>
+                      <button 
+                        onClick={() => handleViewDetails(project.id)}
+                        className="text-primary hover:underline"
+                      >
+                        View Details
+                      </button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 };
