@@ -31,15 +31,6 @@ const rootRoute = new RootRoute({
   component: RootComponent,
 });
 
-// Define route params interface
-interface ProjectParams {
-  projectId: string;
-}
-
-interface ProductParams {
-  productId: string;
-}
-
 const routes = {
   index: new Route({
     getParentRoute: () => rootRoute,
@@ -65,9 +56,6 @@ const routes = {
     getParentRoute: () => rootRoute,
     path: '/project/$projectId',
     component: ProjectDetail,
-    validateParams: (params: ProjectParams) => ({
-      projectId: params.projectId,
-    }),
   }),
   signIn: new Route({
     getParentRoute: () => rootRoute,
@@ -99,6 +87,16 @@ const routes = {
     path: '/profile',
     component: Profile,
   }),
+  companyProfile: new Route({
+    getParentRoute: () => rootRoute,
+    path: '/company-profile',
+    component: CompanyProfile,
+  }),
+  industrialSolutions: new Route({
+    getParentRoute: () => rootRoute,
+    path: '/industrial-solutions',
+    component: IndustrialSolutions,
+  }),
 };
 
 const routeTree = rootRoute.addChildren([
@@ -113,6 +111,8 @@ const routeTree = rootRoute.addChildren([
   routes.checkout,
   routes.paymentSuccess,
   routes.profile,
+  routes.companyProfile,
+  routes.industrialSolutions,
 ]);
 
 export const router = new Router({ routeTree });

@@ -71,7 +71,7 @@ const ProjectReferences = () => {
                 ))}
               </div>
               <Link 
-                to="/project/$projectId" 
+                to="/project/$projectId"
                 params={{ projectId: project.id.toString() }}
               >
                 <Button className="w-full">

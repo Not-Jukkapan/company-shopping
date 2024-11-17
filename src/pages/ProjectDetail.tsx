@@ -52,7 +52,7 @@ const projects: Project[] = [
 ];
 
 const ProjectDetail = () => {
-  const { projectId } = useParams();
+  const { projectId } = useParams({ from: '/project/$projectId' });
   const project = projects.find(p => p.id === Number(projectId));
 
   if (!project) {
