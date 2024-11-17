@@ -54,7 +54,7 @@ const routes = [
   }),
   new Route({
     getParentRoute: () => rootRoute,
-    path: '/project/$id',
+    path: '/project/$projectId',
     component: ProjectDetail,
   }),
   new Route({

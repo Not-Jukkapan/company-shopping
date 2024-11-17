@@ -17,7 +17,7 @@ const ProjectReferences = () => {
 
   const handleViewDetails = (projectId: string) => {
     navigate({
-      to: '/project/:projectId',
+      to: '/project/$projectId',
       params: { projectId }
     });
   };
