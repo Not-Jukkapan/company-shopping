@@ -31,89 +31,85 @@ const rootRoute = new RootRoute({
   component: RootComponent,
 });
 
-const routes = {
-  index: new Route({
-    getParentRoute: () => rootRoute,
-    path: '/',
-    component: Index,
-  }),
-  shop: new Route({
-    getParentRoute: () => rootRoute,
-    path: '/shop',
-    component: Shop,
-  }),
-  productDetail: new Route({
-    getParentRoute: () => rootRoute,
-    path: '/product/$productId',
-    component: ProductDetail,
-  }),
-  projectReferences: new Route({
-    getParentRoute: () => rootRoute,
-    path: '/project-references',
-    component: ProjectReferences,
-  }),
-  projectDetail: new Route({
-    getParentRoute: () => rootRoute,
-    path: '/project/$projectId',
-    component: ProjectDetail,
-  }),
-  signIn: new Route({
+const indexRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: Index,
+});
+
+const shopRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/shop',
+  component: Shop,
+});
+
+const productDetailRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/product/$productId',
+  component: ProductDetail,
+});
+
+const projectReferencesRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/project-references',
+  component: ProjectReferences,
+});
+
+const projectDetailRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/project/$projectId',
+  component: ProjectDetail,
+});
+
+const routes = [
+  indexRoute,
+  shopRoute,
+  productDetailRoute,
+  projectReferencesRoute,
+  projectDetailRoute,
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/auth/signin',
     component: SignIn,
   }),
-  register: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/auth/register',
     component: Register,
   }),
-  cart: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/cart',
     component: Cart,
   }),
-  checkout: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/checkout',
     component: Checkout,
   }),
-  paymentSuccess: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/payment-success',
     component: PaymentSuccess,
   }),
-  profile: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/profile',
     component: Profile,
   }),
-  companyProfile: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/company-profile',
     component: CompanyProfile,
   }),
-  industrialSolutions: new Route({
+  new Route({
     getParentRoute: () => rootRoute,
     path: '/industrial-solutions',
     component: IndustrialSolutions,
   }),
-};
+];
 
-const routeTree = rootRoute.addChildren([
-  routes.index,
-  routes.shop,
-  routes.productDetail,
-  routes.projectReferences,
-  routes.projectDetail,
-  routes.signIn,
-  routes.register,
-  routes.cart,
-  routes.checkout,
-  routes.paymentSuccess,
-  routes.profile,
-  routes.companyProfile,
-  routes.industrialSolutions,
-]);
+const routeTree = rootRoute.addChildren(routes);
 
 export const router = new Router({ routeTree });
 

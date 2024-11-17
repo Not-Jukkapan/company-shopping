@@ -31,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       />
       <div className="p-4">
         <h2 className="text-lg font-semibold">{product.name}</h2>
-        <p className="text-gray-600">${product.price}</p>
+        <p className="text-gray-600">${product.price.toFixed(2)}</p>
         <div className="mt-4 flex gap-2">
           <Button onClick={handleViewDetails} variant="outline">
             View Details
