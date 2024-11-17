@@ -1,44 +1,49 @@
-import { useSearch } from "@tanstack/react-router";
+import { useParams } from "@tanstack/react-router";
+import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/useCartStore";
-import { toast } from "sonner";
-import { Product } from "@/types/product";
+import { Product } from "@/types/Product";
+import { mockProducts } from "@/data/mockProducts";
 
 const ProductDetail = () => {
-  const search = useSearch({ from: '/product/$productId' });
-  const productId = search.productId;
-  const addToCart = useCartStore((state) => state.addItem);
+  const { productId } = useParams({ from: '/product/$productId' });
+  const { addItem } = useCartStore();
 
-  // Mock product data - in a real app, this would come from an API
-  const product: Product = {
-    id: Number(productId),
-    name: "Sample Product",
-    description: "This is a sample product description",
-    price: 99.99,
-    image: "/placeholder.svg",
-    category: "general" // Added the required category field
-  };
+  const { data: product, isLoading } = useQuery({
+    queryKey: ['product', productId],
+    queryFn: async () => {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      return mockProducts.find(p => p.id === Number(productId));
+    }
+  });
 
-  const handleAddToCart = () => {
-    addToCart(product);
-    toast.success("Product added to cart");
-  };
+  if (isLoading) {
+    return <div className="container mx-auto px-4 py-8">Loading...</div>;
+  }
+
+  if (!product) {
+    return <div className="container mx-auto px-4 py-8">Product not found</div>;
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="aspect-square relative">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div>
           <img
             src={product.image}
             alt={product.name}
-            className="object-cover w-full h-full rounded-lg"
+            className="w-full rounded-lg"
           />
         </div>
-        <div className="space-y-6">
-          <h1 className="text-3xl font-bold">{product.name}</h1>
-          <p className="text-gray-600">{product.description}</p>
-          <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
-          <Button onClick={handleAddToCart} size="lg">
+        <div>
+          <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+          <p className="text-2xl font-semibold mb-4">${product.price}</p>
+          <p className="text-gray-600 mb-6">{product.description}</p>
+          <Button 
+            onClick={() => addItem(product)}
+            className="w-full md:w-auto"
+          >
             Add to Cart
           </Button>
         </div>

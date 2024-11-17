@@ -1,6 +1,7 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useCartStore } from '@/store/useCartStore';
 import { Product } from '@/types/Product';
+import { Button } from './ui/button';
 
 interface ProductCardProps {
   product: Product;
@@ -22,7 +23,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   return (
-    <div className="card">
+    <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
       <img
         src={product.image}
         alt={product.name}
@@ -31,13 +32,13 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="p-4">
         <h2 className="text-lg font-semibold">{product.name}</h2>
         <p className="text-gray-600">${product.price}</p>
-        <div className="mt-4 flex justify-between">
-          <button onClick={handleViewDetails} className="btn btn-primary">
+        <div className="mt-4 flex gap-2">
+          <Button onClick={handleViewDetails} variant="outline">
             View Details
-          </button>
-          <button onClick={handleAddToCart} className="btn btn-secondary">
+          </Button>
+          <Button onClick={handleAddToCart}>
             Add to Cart
-          </button>
+          </Button>
         </div>
       </div>
     </div>
