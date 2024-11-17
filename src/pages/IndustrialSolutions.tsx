@@ -1,126 +1,83 @@
-import { Link } from "@tanstack/react-router";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@/components/ui/breadcrumb";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CircuitBoard, Factory, Cpu } from "lucide-react";
+```tsx
+import { useNavigate } from '@tanstack/react-router';
+import { Button } from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+
+interface Solution {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+}
+
+const solutions: Solution[] = [
+  {
+    id: '1',
+    title: 'Process Automation',
+    description: 'Streamline your manufacturing processes with our advanced automation solutions.',
+    imageUrl: '/images/process-automation.jpg',
+  },
+  {
+    id: '2', 
+    title: 'Quality Control Systems',
+    description: 'Ensure consistent product quality with our integrated quality control systems.',
+    imageUrl: '/images/quality-control.jpg',
+  },
+  {
+    id: '3',
+    title: 'Energy Management',
+    description: 'Optimize energy consumption and reduce costs with our smart energy solutions.',
+    imageUrl: '/images/energy-management.jpg',
+  },
+  {
+    id: '4',
+    title: 'Safety Systems',
+    description: 'Protect your workforce with our comprehensive industrial safety systems.',
+    imageUrl: '/images/safety-systems.jpg',
+  },
+];
 
 const IndustrialSolutions = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="container mx-auto px-4 py-8">
-      <Breadcrumb className="mb-8">
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbItem>Industrial Solutions</BreadcrumbItem>
-      </Breadcrumb>
-
-      <div className="space-y-8">
-        <section className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Industrial Automation Solutions</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive industrial automation solutions powered by Siemens technology and IIoT innovation
-          </p>
-        </section>
-
-        <Tabs defaultValue="plc" className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="plc">Siemens PLC Solutions</TabsTrigger>
-            <TabsTrigger value="iiot">IIoT Projects</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="plc">
-            <div className="grid md:grid-cols-3 gap-6">
-              <Link
-                to="/industrial-solutions/$solutionId"
-                params={{ solutionId: "plc-programming" }}
-                className="block hover:scale-105 transition-transform"
+      <h1 className="text-4xl font-bold mb-8">Industrial Solutions</h1>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {solutions.map((solution) => (
+          <Card key={solution.id} className="cursor-pointer hover:shadow-lg transition-shadow">
+            <CardHeader>
+              <img
+                src={solution.imageUrl}
+                alt={solution.title}
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+            </CardHeader>
+            <CardContent>
+              <CardTitle className="mb-2">{solution.title}</CardTitle>
+              <CardDescription>{solution.description}</CardDescription>
+              <Button 
+                className="mt-4"
+                onClick={() => navigate({ 
+                  to: '/industrial-solutions/$params',
+                  params: { params: solution.id }
+                })}
               >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <CircuitBoard className="h-5 w-5" />
-                      PLC Programming
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Expert programming services for Siemens S7 series PLCs, including TIA Portal integration
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link
-                to="/industrial-solutions/$solutionId"
-                params={{ solutionId: "process-automation" }}
-                className="block hover:scale-105 transition-transform"
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Factory className="h-5 w-5" />
-                      Process Automation
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Complete process automation solutions using Siemens PCS 7 and SCADA systems
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-
-              <Link
-                to="/industrial-solutions/$solutionId"
-                params={{ solutionId: "hardware-integration" }}
-                className="block hover:scale-105 transition-transform"
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <Cpu className="h-5 w-5" />
-                      Hardware Integration
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">
-                      Seamless integration of Siemens components with existing industrial systems
-                    </p>
-                  </CardContent>
-                </Card>
-              </Link>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="iiot">
-            <div className="grid md:grid-cols-2 gap-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Data Collection & Analytics</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Implement IoT sensors and analytics platforms to gather and analyze industrial data for improved decision-making
-                  </p>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle>Remote Monitoring</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Set up remote monitoring systems for real-time equipment status and performance tracking
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-          </TabsContent>
-        </Tabs>
+                Learn More
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
       </div>
     </div>
   );
 };
 
 export default IndustrialSolutions;
+```

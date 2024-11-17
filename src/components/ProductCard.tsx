@@ -1,45 +1,34 @@
+import React from 'react';
 import { useNavigate } from '@tanstack/react-router';
-import { useCartStore } from '@/store/useCartStore';
-import { Product } from '@/types/Product';
-import { Button } from './ui/button';
+import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
-  product: Product;
+  product: {
+    id: string;
+    name: string;
+    price: number;
+    imageUrl: string;
+  }
 }
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const navigate = useNavigate();
-  const { addItem } = useCartStore();
-
-  const handleViewDetails = () => {
-    navigate({ 
-      to: '/product/$productId',
-      params: { productId: product.id.toString() }
-    });
-  };
-
-  const handleAddToCart = () => {
-    addItem(product);
-  };
 
   return (
-    <div className="rounded-lg border bg-card text-card-foreground shadow-sm">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-48 object-cover rounded-t-lg"
-      />
+    <div className="border rounded-lg overflow-hidden shadow-md">
+      <img src={product.imageUrl} alt={product.name} className="w-full h-48 object-cover" />
       <div className="p-4">
-        <h2 className="text-lg font-semibold">{product.name}</h2>
+        <h3 className="text-lg font-semibold">{product.name}</h3>
         <p className="text-gray-600">${product.price.toFixed(2)}</p>
-        <div className="mt-4 flex gap-2">
-          <Button onClick={handleViewDetails} variant="outline">
-            View Details
-          </Button>
-          <Button onClick={handleAddToCart}>
-            Add to Cart
-          </Button>
-        </div>
+        <Button 
+          onClick={() => navigate({ 
+            to: '/product/$params',
+            params: { params: product.id }
+          })} 
+          className="mt-2 w-full"
+        >
+          View Details
+        </Button>
       </div>
     </div>
   );
