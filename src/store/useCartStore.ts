@@ -1,23 +1,22 @@
 import { create } from 'zustand';
-import { Product } from '@/types/product';
+import { Product } from '@/types/Product';
 
 interface CartStore {
   items: Product[];
-  addItem: (product: Product) => void;
-  removeItem: (productId: number) => void;
+  addItem: (item: Product) => void;
+  removeItem: (itemId: number) => void;
   clearCart: () => void;
-  getTotalPrice: () => number;
 }
 
-export const useCartStore = create<CartStore>((set, get) => ({
+export const useCartStore = create<CartStore>((set) => ({
   items: [],
-  addItem: (product) => set((state) => ({ items: [...state.items, product] })),
-  removeItem: (productId) => set((state) => ({
-    items: state.items.filter((item) => item.id !== productId)
-  })),
+  addItem: (item) =>
+    set((state) => ({
+      items: [...state.items, item],
+    })),
+  removeItem: (itemId) =>
+    set((state) => ({
+      items: state.items.filter((item) => item.id !== itemId),
+    })),
   clearCart: () => set({ items: [] }),
-  getTotalPrice: () => {
-    const { items } = get();
-    return items.reduce((total, item) => total + item.price, 0);
-  },
 }));
