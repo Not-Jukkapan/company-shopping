@@ -14,6 +14,8 @@ import Cart from '@/pages/Cart';
 import Checkout from '@/pages/Checkout';
 import PaymentSuccess from '@/pages/PaymentSuccess';
 import Profile from '@/pages/profile/Profile';
+import Services from '@/pages/Services';
+import Resources from '@/pages/Resources';
 import { useCartStore } from './store/useCartStore';
 
 const RootComponent = () => {
@@ -96,6 +98,16 @@ const routes = [
     getParentRoute: () => rootRoute,
     path: '/industrial-solutions',
     component: IndustrialSolutions,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/services',
+    component: Services,
+  }),
+  new Route({
+    getParentRoute: () => rootRoute,
+    path: '/resources',
+    component: Resources,
   }),
 ];
 

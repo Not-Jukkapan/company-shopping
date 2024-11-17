@@ -43,8 +43,15 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
                   <DropdownMenuItem onClick={() => navigate({ to: '/project-references' })}>
                     Project References
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate({ to: '/services' })}>
+                    Services
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+
+              <Link to="/resources" className="text-gray-600 hover:text-primary">
+                Resources
+              </Link>
 
               <Link to="/company-profile" className="text-gray-600 hover:text-primary">
                 About Us
