@@ -1,10 +1,19 @@
-import React from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import ProductGrid from "@/components/ProductGrid";
 import { ProductGridSkeleton } from "@/components/ui/skeletons";
 import { Product } from "@/types/Product";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Search } from "lucide-react";
 
-// Mock products data since we don't have a real API yet
+// Mock products data
 const mockProducts: Product[] = [
   {
     id: 1,
@@ -41,7 +50,10 @@ const mockProducts: Product[] = [
 ];
 
 const Shop = () => {
-  const { data, error, isLoading } = useQuery({
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  const { data: products, isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
       // Simulate API call
@@ -50,15 +62,59 @@ const Shop = () => {
     }
   });
 
+  const categories = Array.from(
+    new Set(mockProducts.map((product) => product.category))
+  );
+
+  const filteredProducts = products?.filter((product) => {
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      selectedCategory === "" || product.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Shop</h1>
+      
+      <div className="flex flex-col md:flex-row gap-4 mb-8">
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
+          <Input
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="pl-10"
+          />
+        </div>
+        <Select
+          value={selectedCategory}
+          onValueChange={setSelectedCategory}
+        >
+          <SelectTrigger className="w-full md:w-[200px]">
+            <SelectValue placeholder="All Categories" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="">All Categories</SelectItem>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
       {isLoading ? (
         <ProductGridSkeleton />
-      ) : error ? (
-        <div className="text-red-500">Error loading products</div>
+      ) : filteredProducts?.length === 0 ? (
+        <div className="text-center py-8 text-gray-500">
+          No products found matching your criteria
+        </div>
       ) : (
-        <ProductGrid products={data || []} />
+        <ProductGrid products={filteredProducts || []} />
       )}
     </div>
   );
