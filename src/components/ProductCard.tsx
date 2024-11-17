@@ -3,27 +3,26 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/componen
 import { Product } from "@/types/product";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { toast } from "sonner";
+import { useCartStore } from "@/store/useCartStore";
 
 interface ProductCardProps {
   product: Product;
-  onAddToCart?: (product: Product) => void;
 }
 
-const ProductCard = ({ product, onAddToCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   const navigate = useNavigate();
+  const addItem = useCartStore((state) => state.addItem);
 
   const handleAddToCart = () => {
-    if (onAddToCart) {
-      onAddToCart(product);
-      toast.success("Product added to cart");
-    }
+    addItem(product);
+    toast.success("Product added to cart");
   };
 
   const handleViewDetails = () => {
     navigate({
       to: '/product/$productId',
       params: { productId: String(product.id) },
-      search: { id: String(product.id) }
+      search: { productId: String(product.id) }
     });
   };
 

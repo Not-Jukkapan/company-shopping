@@ -15,7 +15,8 @@ const ProductDetail = () => {
     name: "Sample Product",
     description: "This is a sample product description",
     price: 99.99,
-    image: "/placeholder.svg"
+    image: "/placeholder.svg",
+    category: "general" // Added the required category field
   };
 
   const handleAddToCart = () => {

@@ -46,7 +46,7 @@ const productDetailRoute = new Route({
   component: ProductDetail,
   validateSearch: (search: Record<string, unknown>) => {
     return {
-      productId: String(search.id || '')
+      productId: String(search.productId || '')
     };
   },
 });
