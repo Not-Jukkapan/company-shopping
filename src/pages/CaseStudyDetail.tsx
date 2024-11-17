@@ -11,12 +11,12 @@ interface CaseStudy {
   client: string;
   industry: string;
   summary: string;
+  challenge: string;
+  solution: string;
   results: string[];
   tags: string[];
   image: string;
-  challenge?: string;
-  solution?: string;
-  testimonial?: {
+  testimonial: {
     quote: string;
     author: string;
     position: string;
@@ -35,9 +35,10 @@ const caseStudies: CaseStudy[] = [
     results: [
       "45% reduction in operational costs",
       "60% decrease in production downtime",
-      "99.9% quality improvement rate"
+      "99.9% quality improvement rate",
+      "ROI achieved within 18 months"
     ],
-    tags: ["Automation", "PLC", "SCADA"],
+    tags: ["Automation", "PLC", "SCADA", "Industry 4.0"],
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     testimonial: {
       quote: "The automation system has transformed our manufacturing process. We've seen remarkable improvements in efficiency and quality.",
@@ -45,7 +46,72 @@ const caseStudies: CaseStudy[] = [
       position: "Operations Director, ABC Manufacturing"
     }
   },
-  // ... Add other case studies with similar detailed information
+  {
+    id: 2,
+    title: "Smart Warehouse Management System",
+    client: "Logistics Plus Co.",
+    industry: "Logistics",
+    summary: "IoT-based warehouse management system implementation",
+    challenge: "Logistics Plus Co. struggled with inventory accuracy, slow order fulfillment, and high labor costs due to manual warehouse processes. They needed a modern solution to automate their warehouse operations and improve efficiency.",
+    solution: "We developed and implemented a comprehensive IoT-based warehouse management system featuring RFID tracking, automated guided vehicles (AGVs), and real-time inventory management. The system integrates with their existing ERP and includes a mobile app for warehouse staff.",
+    results: [
+      "99.9% inventory accuracy",
+      "50% faster order fulfillment",
+      "30% reduction in labor costs",
+      "85% decrease in picking errors"
+    ],
+    tags: ["IoT", "Warehouse", "Automation", "RFID"],
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158",
+    testimonial: {
+      quote: "The smart warehouse system has revolutionized our operations. We're now able to process twice as many orders with fewer errors.",
+      author: "Sarah Johnson",
+      position: "Warehouse Operations Manager, Logistics Plus Co."
+    }
+  },
+  {
+    id: 3,
+    title: "Energy Management Optimization",
+    client: "GreenTech Industries",
+    industry: "Energy",
+    summary: "Smart energy monitoring and optimization system deployment",
+    challenge: "GreenTech Industries wanted to reduce their carbon footprint and energy costs across their manufacturing facilities. They needed a solution that could provide real-time monitoring and automated optimization of energy consumption.",
+    solution: "We implemented an AI-powered energy management system with smart meters, IoT sensors, and automated controls. The system includes predictive analytics for energy usage optimization and integration with renewable energy sources.",
+    results: [
+      "35% energy cost savings",
+      "40% reduction in carbon footprint",
+      "Real-time energy monitoring",
+      "20% increase in renewable energy utilization"
+    ],
+    tags: ["Energy", "IoT", "Sustainability", "AI"],
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e",
+    testimonial: {
+      quote: "This system has helped us achieve our sustainability goals while significantly reducing our operational costs.",
+      author: "Michael Chen",
+      position: "Sustainability Director, GreenTech Industries"
+    }
+  },
+  {
+    id: 4,
+    title: "Quality Control Automation",
+    client: "Precision Electronics",
+    industry: "Electronics",
+    summary: "AI-powered quality inspection system implementation",
+    challenge: "Precision Electronics faced challenges with manual quality inspection processes that were time-consuming and prone to human error. They needed an automated solution to improve accuracy and speed up their quality control process.",
+    solution: "We developed and implemented an AI-powered computer vision system for automated quality inspection. The solution includes high-speed cameras, deep learning algorithms for defect detection, and integration with their production line control systems.",
+    results: [
+      "99.99% defect detection rate",
+      "75% faster inspection process",
+      "90% reduction in manual inspection",
+      "50% decrease in customer returns"
+    ],
+    tags: ["AI", "Quality Control", "Vision Systems", "Machine Learning"],
+    image: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0",
+    testimonial: {
+      quote: "The AI-powered inspection system has transformed our quality control process, significantly reducing defects while increasing throughput.",
+      author: "David Lee",
+      position: "Quality Assurance Manager, Precision Electronics"
+    }
+  }
 ];
 
 const CaseStudyDetail = () => {

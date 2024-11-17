@@ -26,7 +26,7 @@ const caseStudies: CaseStudy[] = [
       "60% decrease in production downtime",
       "99.9% quality improvement rate"
     ],
-    tags: ["Automation", "PLC", "SCADA"],
+    tags: ["Automation", "PLC", "SCADA", "Industry 4.0"],
     image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
   },
   {
@@ -40,7 +40,7 @@ const caseStudies: CaseStudy[] = [
       "50% faster order fulfillment",
       "30% reduction in labor costs"
     ],
-    tags: ["IoT", "Warehouse", "Automation"],
+    tags: ["IoT", "Warehouse", "Automation", "RFID"],
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
   },
   {
@@ -54,7 +54,7 @@ const caseStudies: CaseStudy[] = [
       "40% reduction in carbon footprint",
       "Real-time energy monitoring"
     ],
-    tags: ["Energy", "IoT", "Sustainability"],
+    tags: ["Energy", "IoT", "Sustainability", "AI"],
     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e"
   },
   {
@@ -68,7 +68,7 @@ const caseStudies: CaseStudy[] = [
       "75% faster inspection process",
       "90% reduction in manual inspection"
     ],
-    tags: ["AI", "Quality Control", "Vision Systems"],
+    tags: ["AI", "Quality Control", "Vision Systems", "Machine Learning"],
     image: "https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0"
   }
 ];
@@ -81,8 +81,7 @@ const CaseStudies = () => {
         {caseStudies.map((study) => (
           <Link
             key={study.id}
-            to="/case-studies/$caseId"
-            params={{ caseId: study.id.toString() }}
+            to={`/case-studies/${study.id}`}
             className="group"
           >
             <Card className="h-full hover:shadow-lg transition-shadow">
