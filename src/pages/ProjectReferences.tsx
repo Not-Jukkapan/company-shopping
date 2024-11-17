@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { Product } from '@/types/Product';
 import { useQuery } from '@tanstack/react-query';
@@ -12,7 +11,7 @@ const ProjectReferences = () => {
     queryFn: async () => {
       // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      return mockProducts; // Here we're using mockProducts for demo purposes
+      return mockProducts;
     }
   });
 
@@ -23,29 +22,26 @@ const ProjectReferences = () => {
     });
   };
 
-  useEffect(() => {
-    if (projects) {
-      console.log('Projects available:', projects);
-    }
-  }, [projects]);
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-8">Project References</h1>
-      <ul>
-        {projects.map((project: Product) => (
-          <li key={project.id} className="mb-4">
-            <h2 className="text-lg">{project.name}</h2>
-            <button onClick={() => handleViewDetails(project.id.toString())}>
+      <div className="grid gap-6">
+        {projects?.map((project: Product) => (
+          <div key={project.id} className="border rounded-lg p-4">
+            <h2 className="text-xl font-semibold mb-2">{project.name}</h2>
+            <button 
+              onClick={() => handleViewDetails(project.id.toString())}
+              className="text-primary hover:underline"
+            >
               View Details
             </button>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

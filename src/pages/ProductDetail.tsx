@@ -2,11 +2,10 @@ import { useParams } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { useCartStore } from "@/store/useCartStore";
-import { Product } from "@/types/Product";
 import { mockProducts } from "@/data/mockProducts";
 
 const ProductDetail = () => {
-  const { productId } = useParams({ from: '/product/$productId' });
+  const { productId } = useParams({ from: '/product/:productId' });
   const { addItem } = useCartStore();
 
   const { data: product, isLoading } = useQuery({
