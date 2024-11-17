@@ -27,8 +27,8 @@ const ProjectReferences = () => {
             <p className="text-muted-foreground">{project.description}</p>
             <Button 
               onClick={() => navigate({ 
-                to: '/project/$params',
-                params: { params: project.id }
+                to: '/project/$projectId',
+                params: { projectId: project.id }
               })}
               className="mt-4"
             >

@@ -22,8 +22,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <p className="text-gray-600">${product.price.toFixed(2)}</p>
         <Button 
           onClick={() => navigate({ 
-            to: '/product/$params',
-            params: { params: product.id }
+            to: '/product/$productId',
+            params: { productId: product.id }
           })} 
           className="mt-2 w-full"
         >

@@ -1,4 +1,3 @@
-```tsx
 import { useNavigate } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import {
@@ -65,8 +64,8 @@ const IndustrialSolutions = () => {
               <Button 
                 className="mt-4"
                 onClick={() => navigate({ 
-                  to: '/industrial-solutions/$params',
-                  params: { params: solution.id }
+                  to: '/industrial-solutions/$solutionId',
+                  params: { solutionId: solution.id }
                 })}
               >
                 Learn More
@@ -80,4 +79,3 @@ const IndustrialSolutions = () => {
 };
 
 export default IndustrialSolutions;
-```
