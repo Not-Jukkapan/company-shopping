@@ -25,6 +25,9 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
               <Link to="/shop" className="text-gray-600 hover:text-primary">
                 Shop
               </Link>
+              <Link to="/industrial-solutions" className="text-gray-600 hover:text-primary">
+                Solutions
+              </Link>
               <Link to="/company-profile" className="text-gray-600 hover:text-primary">
                 About Us
               </Link>

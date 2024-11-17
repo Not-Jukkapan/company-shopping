@@ -21,8 +21,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const handleViewDetails = () => {
     navigate({
       to: '/product/$productId',
-      params: { productId: String(product.id) },
-      search: { productId: String(product.id) }
+      params: { productId: product.id.toString() }
     });
   };
 
