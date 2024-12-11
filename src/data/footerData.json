@@ -1,0 +1,52 @@
+{
+  "common": {
+    "about": {
+      "title": "Chaiudom",
+      "description": "Leading provider of industrial automation solutions in Thailand"
+    },
+    "contact": {
+      "title": "Contact",
+      "info": [
+        "123 Industrial Estate",
+        "Bangkok, Thailand 10400",
+        "Tel: +66 2 123 4567",
+        "Email: contact@chaiudom.com"
+      ]
+    },
+    "officeHours": {
+      "title": "Office Hours",
+      "hours": [
+        "Monday - Friday: 8:30 AM - 5:30 PM",
+        "Saturday: 9:00 AM - 1:00 PM",
+        "24/7 Emergency Support for Critical Systems"
+      ]
+    }
+  },
+  "company": {
+    "title": "Company Links",
+    "links": [
+      { "label": "About Us", "to": "/company-profile" },
+      { "label": "Careers", "to": "/career" },
+      { "label": "News & Updates", "to": "/news" },
+      { "label": "Contact Us", "to": "/contact" }
+    ]
+  },
+  "shop": {
+    "title": "Shop Links",
+    "links": [
+      { "label": "Products", "to": "/shop" },
+      { "label": "Shipping Policy", "to": "#" },
+      { "label": "Return Policy", "to": "#" },
+      { "label": "Track Order", "to": "#" }
+    ]
+  },
+  "resources": {
+    "title": "Resources",
+    "links": [
+      { "label": "Documentation", "to": "/resources/documentation" },
+      { "label": "Whitepapers", "to": "/resources/whitepapers" },
+      { "label": "Video Tutorials", "to": "/resources/video-tutorials" },
+      { "label": "Case Studies", "to": "/resources/case-studies" }
+    ]
+  }
+}
