@@ -7,27 +7,27 @@ import {
 } from "@tanstack/react-router";
 import RootComponent from "./pages/_Root";
 import Index from "@/pages/Index";
-import Shop from "@/pages/shop/Shop";
-import CompanyProfile from "@/pages/company/CompanyProfile";
-import IndustrialSolutions from "@/pages/solutions/IndustrialSolutions";
+import Shop from "@/pages/shop/ShopPage";
+import CompanyProfile from "@/pages/company/CompanyProfilePage";
+import IndustrialSolutions from "@/pages/solutions/IndustrialSolutionsPage";
 import SolutionDetail from "@/pages/solutions/SolutionDetail";
-import ProjectReferences from "@/pages/solutions/ProjectReferences";
+import ProjectReferences from "@/pages/solutions/ProjectReferencesPage";
 import ProjectDetail from "@/pages/solutions/ProjectDetail";
-import SignIn from "@/pages/auth/SignIn";
-import Register from "@/pages/auth/Register";
-import ProductDetail from "@/pages/shop/ProductDetail";
-import Cart from "@/pages/shop/Cart";
-import Checkout from "@/pages/shop/Checkout";
+import SignIn from "@/pages/auth/SignInPage";
+import Register from "@/pages/auth/RegisterPage";
+import ProductDetail from "@/pages/shop/ProductDetailPage";
+import Cart from "@/pages/shop/CartPage";
+import Checkout from "@/pages/shop/CheckoutPage";
 import PaymentSuccess from "@/pages/shop/PaymentSuccess";
-import Profile from "@/pages/Profile";
-import Services from "@/pages/solutions/Services";
-import Resources from "@/pages/Resources";
+import Profile from "@/pages/ProfilePage";
+import Services from "@/pages/solutions/ServicesPage";
+import Resources from "@/pages/ResourcesPage";
 import CaseStudies from "@/pages/solutions/CaseStudy/CaseStudies";
-import Careers from "@/pages/company/Careers";
-import Support from "@/pages/Support";
-import News from "@/pages/company/News";
+import Careers from "@/pages/company/CareersPage";
+import Support from "@/pages/SupportPage";
+import News from "@/pages/company/NewsPage";
 import CaseStudyDetail from "@/pages/solutions/CaseStudy/CaseStudyDetail";
-import Contact from "@/pages/Contact";
+import Contact from "@/pages/ContactPage";
 
 const rootRoute = createRootRoute({
   component: RootComponent,
