@@ -5,8 +5,6 @@ import {
   createRoute,
   createRootRoute,
 } from "@tanstack/react-router";
-import { Outlet } from "@tanstack/react-router";
-import Navbar from "@/components/Navbar";
 import RootComponent from "./pages/_Root";
 import Index from "@/pages/Index";
 import Shop from "@/pages/Shop";
@@ -30,7 +28,6 @@ import Support from "@/pages/Support";
 import News from "@/pages/News";
 import CaseStudyDetail from "@/pages/CaseStudyDetail";
 import Contact from "@/pages/Contact";
-import { useCartStore } from "./store/useCartStore";
 
 const rootRoute = createRootRoute({
   component: RootComponent,
