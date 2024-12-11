@@ -1,8 +1,8 @@
 import { ShoppingCart, User, LogOut, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "./ui/button";
-import { Link } from '@tanstack/react-router';
-import { useNavigate } from '@tanstack/react-router';
-import { useAuth } from '@/lib/auth';
+import { Link } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
+import { useAuth } from "@/lib/auth";
 import { useState } from "react";
 import {
   DropdownMenu,
@@ -26,22 +26,26 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
       <Link to="/shop" className="text-gray-600 hover:text-primary">
         Shop
       </Link>
-      
+
       <DropdownMenu>
         <DropdownMenuTrigger className="flex items-center gap-1 text-gray-600 hover:text-primary">
           Solutions <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => navigate({ to: '/industrial-solutions' })}>
+          <DropdownMenuItem
+            onClick={() => navigate({ to: "/industrial-solutions" })}
+          >
             Industrial Solutions
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate({ to: '/project-references' })}>
+          <DropdownMenuItem
+            onClick={() => navigate({ to: "/project-references" })}
+          >
             Project References
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate({ to: '/services' })}>
+          <DropdownMenuItem onClick={() => navigate({ to: "/services" })}>
             Services
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate({ to: '/case-studies' })}>
+          <DropdownMenuItem onClick={() => navigate({ to: "/case-studies" })}>
             Case Studies
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -60,13 +64,15 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
           Company <ChevronDown className="h-4 w-4" />
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem onClick={() => navigate({ to: '/company-profile' })}>
+          <DropdownMenuItem
+            onClick={() => navigate({ to: "/company-profile" })}
+          >
             About Us
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate({ to: '/careers' })}>
+          <DropdownMenuItem onClick={() => navigate({ to: "/careers" })}>
             Careers
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => navigate({ to: '/news' })}>
+          <DropdownMenuItem onClick={() => navigate({ to: "/news" })}>
             News & Events
           </DropdownMenuItem>
         </DropdownMenuContent>
@@ -80,9 +86,9 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-8">
             <Link to="/" className="text-2xl font-bold text-primary">
-              TechCompany
+              Company
             </Link>
-            
+
             {/* Desktop Navigation */}
             <div className="hidden md:flex gap-6">
               <NavLinks />
@@ -106,15 +112,19 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
 
             {isAuthenticated ? (
               <>
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="flex items-center gap-2"
-                  onClick={() => navigate({ to: '/profile' })}
+                  onClick={() => navigate({ to: "/profile" })}
                 >
                   <User size={20} />
                   <span className="hidden sm:inline">Profile</span>
                 </Button>
-                <Button onClick={() => signOut()} variant="ghost" className="flex items-center gap-2">
+                <Button
+                  onClick={() => signOut()}
+                  variant="ghost"
+                  className="flex items-center gap-2"
+                >
                   <LogOut size={20} />
                   <span className="hidden sm:inline">Sign Out</span>
                 </Button>
@@ -127,10 +137,10 @@ const Navbar = ({ cartItemCount }: NavbarProps) => {
                 </Button>
               </Link>
             )}
-            
-            <Button 
-              onClick={() => navigate({ to: '/cart' })} 
-              variant="outline" 
+
+            <Button
+              onClick={() => navigate({ to: "/cart" })}
+              variant="outline"
               className="flex items-center gap-2 relative"
             >
               <ShoppingCart size={20} />
