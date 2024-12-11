@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const ProjectResponse = z.object({
   id: z.number(),
@@ -18,10 +18,10 @@ export const ProjectResponse = z.object({
 
 export const ProjectsResponse = z.array(ProjectResponse);
 
-export const CreateProjectDTO = ProjectResponse.omit({ 
-  id: true, 
-  createdAt: true, 
-  updatedAt: true 
+export const CreateProjectDTO = ProjectResponse.omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
 });
 
 export const UpdateProjectDTO = CreateProjectDTO.partial();
