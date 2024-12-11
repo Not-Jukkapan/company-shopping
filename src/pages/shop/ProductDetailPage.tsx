@@ -41,7 +41,7 @@ const ProductDetail = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4">
         <div className="animate-pulse">
           <div className="h-64 bg-gray-200 rounded-lg mb-4"></div>
           <div className="h-8 bg-gray-200 rounded w-1/2 mb-4"></div>
@@ -54,7 +54,7 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
           <p className="text-gray-600">The product you're looking for doesn't exist.</p>
@@ -71,7 +71,7 @@ const ProductDetail = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <div className="grid md:grid-cols-2 gap-8">
         <div className="space-y-4">
           <Dialog>

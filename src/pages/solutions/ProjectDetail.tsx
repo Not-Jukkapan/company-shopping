@@ -56,11 +56,11 @@ const ProjectDetail = () => {
   const project = projects.find(p => p.id === Number(projectId));
 
   if (!project) {
-    return <div className="container mx-auto px-4 py-8">Project not found</div>;
+    return <div className="container mx-auto px-4 py-4">Project not found</div>;
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

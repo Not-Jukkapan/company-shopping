@@ -119,11 +119,11 @@ const CaseStudyDetail = () => {
   const study = caseStudies.find(s => s.id === Number(caseId));
 
   if (!study) {
-    return <div className="container mx-auto px-4 py-8">Case study not found</div>;
+    return <div className="container mx-auto px-4 py-4">Case study not found</div>;
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

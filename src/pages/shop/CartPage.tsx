@@ -10,7 +10,7 @@ const Cart = () => {
 
   if (items.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-8 text-center">
+      <div className="container mx-auto px-4 py-4 text-center">
         <h2 className="text-2xl font-bold mb-4">Your cart is empty</h2>
         <Button onClick={() => navigate({ to: '/shop' })}>Continue Shopping</Button>
       </div>
@@ -18,7 +18,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <h2 className="text-2xl font-bold mb-6">Shopping Cart</h2>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -2,14 +2,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { 
-  User, 
-  MapPin, 
-  CreditCard, 
-  ShoppingBag, 
-  Bell, 
-  Shield, 
-  Heart 
+import {
+  User,
+  MapPin,
+  CreditCard,
+  ShoppingBag,
+  Bell,
+  Shield,
+  Heart,
 } from "lucide-react";
 
 // Mock data for demonstration
@@ -26,7 +26,7 @@ const TEST_USER = {
       city: "San Francisco",
       state: "CA",
       zipCode: "94105",
-      isDefault: true
+      isDefault: true,
     },
     {
       id: 2,
@@ -35,8 +35,8 @@ const TEST_USER = {
       city: "San Francisco",
       state: "CA",
       zipCode: "94103",
-      isDefault: false
-    }
+      isDefault: false,
+    },
   ],
   orders: [
     {
@@ -44,15 +44,15 @@ const TEST_USER = {
       date: "2024-03-15",
       total: 1299.99,
       status: "Delivered",
-      items: 3
+      items: 3,
     },
     {
       id: "ORD-2024-002",
       date: "2024-03-01",
       total: 799.99,
       status: "Processing",
-      items: 2
-    }
+      items: 2,
+    },
   ],
   paymentMethods: [
     {
@@ -60,28 +60,28 @@ const TEST_USER = {
       type: "Credit Card",
       last4: "4242",
       expiry: "12/25",
-      isDefault: true
-    }
+      isDefault: true,
+    },
   ],
   preferences: {
     notifications: {
       orders: true,
       promotions: false,
-      newsletter: true
-    }
+      newsletter: true,
+    },
   },
   wishlist: [
     {
       id: 1,
       name: "Siemens S7-1500",
-      price: 1899.99
-    }
-  ]
+      price: 1899.99,
+    },
+  ],
 };
 
 const Profile = () => {
   return (
-    <div className="container mx-auto py-8 px-4">
+    <div className="container mx-auto py-4 px-4">
       <div className="flex items-center gap-4 mb-6">
         <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center">
           <User className="h-10 w-10 text-primary" />
@@ -91,7 +91,7 @@ const Profile = () => {
           <p className="text-gray-500">Member since {TEST_USER.dateJoined}</p>
         </div>
       </div>
-      
+
       <Tabs defaultValue="personal" className="space-y-4">
         <TabsList className="grid w-full grid-cols-2 lg:grid-cols-6 gap-2">
           <TabsTrigger value="personal">Personal Info</TabsTrigger>
@@ -108,15 +108,21 @@ const Profile = () => {
             <div className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">Name</label>
+                  <label className="block text-sm font-medium text-gray-600">
+                    Name
+                  </label>
                   <Input value={TEST_USER.name} className="mt-1" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">Email</label>
+                  <label className="block text-sm font-medium text-gray-600">
+                    Email
+                  </label>
                   <Input value={TEST_USER.email} className="mt-1" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-600">Phone</label>
+                  <label className="block text-sm font-medium text-gray-600">
+                    Phone
+                  </label>
                   <Input value={TEST_USER.phone} className="mt-1" />
                 </div>
               </div>
@@ -143,12 +149,18 @@ const Profile = () => {
                       </p>
                     </div>
                     <div className="space-x-2">
-                      <Button variant="outline" size="sm">Edit</Button>
-                      <Button variant="outline" size="sm">Delete</Button>
+                      <Button variant="outline" size="sm">
+                        Edit
+                      </Button>
+                      <Button variant="outline" size="sm">
+                        Delete
+                      </Button>
                     </div>
                   </div>
                   {address.isDefault && (
-                    <span className="mt-2 inline-block text-sm text-primary">Default Address</span>
+                    <span className="mt-2 inline-block text-sm text-primary">
+                      Default Address
+                    </span>
                   )}
                 </div>
               ))}
@@ -166,13 +178,19 @@ const Profile = () => {
                     <div>
                       <h3 className="font-medium">Order #{order.id}</h3>
                       <p className="text-gray-600">{order.date}</p>
-                      <p className="text-sm text-gray-500">{order.items} items</p>
+                      <p className="text-sm text-gray-500">
+                        {order.items} items
+                      </p>
                     </div>
                     <div className="text-right">
                       <p className="font-medium">${order.total.toFixed(2)}</p>
-                      <span className={`text-sm ${
-                        order.status === "Delivered" ? "text-green-500" : "text-blue-500"
-                      }`}>
+                      <span
+                        className={`text-sm ${
+                          order.status === "Delivered"
+                            ? "text-green-500"
+                            : "text-blue-500"
+                        }`}
+                      >
                         {order.status}
                       </span>
                     </div>
@@ -196,8 +214,12 @@ const Profile = () => {
                     <div className="flex items-center gap-3">
                       <CreditCard className="h-5 w-5 text-gray-500" />
                       <div>
-                        <p className="font-medium">{method.type} ending in {method.last4}</p>
-                        <p className="text-sm text-gray-500">Expires {method.expiry}</p>
+                        <p className="font-medium">
+                          {method.type} ending in {method.last4}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          Expires {method.expiry}
+                        </p>
                       </div>
                     </div>
                     {method.isDefault && (
@@ -212,21 +234,28 @@ const Profile = () => {
 
         <TabsContent value="preferences">
           <Card className="p-6">
-            <h2 className="text-xl font-semibold mb-4">Notification Preferences</h2>
+            <h2 className="text-xl font-semibold mb-4">
+              Notification Preferences
+            </h2>
             <div className="space-y-4">
-              {Object.entries(TEST_USER.preferences.notifications).map(([key, value]) => (
-                <div key={key} className="flex items-center justify-between py-2">
-                  <div>
-                    <p className="font-medium capitalize">{key}</p>
-                    <p className="text-sm text-gray-500">
-                      Receive notifications about {key}
-                    </p>
+              {Object.entries(TEST_USER.preferences.notifications).map(
+                ([key, value]) => (
+                  <div
+                    key={key}
+                    className="flex items-center justify-between py-2"
+                  >
+                    <div>
+                      <p className="font-medium capitalize">{key}</p>
+                      <p className="text-sm text-gray-500">
+                        Receive notifications about {key}
+                      </p>
+                    </div>
+                    <Button variant={value ? "default" : "outline"}>
+                      {value ? "Enabled" : "Disabled"}
+                    </Button>
                   </div>
-                  <Button variant={value ? "default" : "outline"}>
-                    {value ? "Enabled" : "Disabled"}
-                  </Button>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </Card>
         </TabsContent>

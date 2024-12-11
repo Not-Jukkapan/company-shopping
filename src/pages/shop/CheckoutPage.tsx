@@ -62,7 +62,7 @@ const Checkout = () => {
   const selectedPaymentDetails = MOCK_PAYMENT_DETAILS[selectedPayment];
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <h2 className="text-2xl font-bold mb-6">Checkout</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

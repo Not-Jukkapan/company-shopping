@@ -78,7 +78,7 @@ const ProjectReferences = () => {
 
   if (isLoading) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4">
         <div className="space-y-4">
           {[1, 2, 3].map((n) => (
             <Card key={n} className="animate-pulse">
@@ -100,7 +100,7 @@ const ProjectReferences = () => {
   }, {});
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <h1 className="text-3xl font-bold mb-8">Project References</h1>
       <Accordion type="single" collapsible className="w-full space-y-4">
         {projectsByCategory && Object.entries(projectsByCategory).map(([category, categoryProjects]) => (
