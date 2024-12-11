@@ -1,5 +1,5 @@
 import { ShoppingCart, User, LogOut, ChevronDown, Menu, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { Button } from "../../ui/button";
 import { Link } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 import { useAuth } from "@/lib/auth";

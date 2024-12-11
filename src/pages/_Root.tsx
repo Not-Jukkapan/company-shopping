@@ -1,7 +1,6 @@
 import { Outlet } from "@tanstack/react-router";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/Layout/Navbar";
 import { useCartStore } from "@/store/useCartStore";
-import Breadcrumbs from "@/components/BreadCrumb";
 
 const RootComponent = () => {
   const cartItems = useCartStore((state) => state.items);
